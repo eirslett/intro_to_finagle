@@ -7,5 +7,4 @@ struct Recipe {
 }
 service RecipeService {
     Recipe getRecipe(i32 recipeId);
-    list<i32> getRecipeIds();
 }

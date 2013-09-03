@@ -1,19 +1,32 @@
 package javaexample;
 
-import java.net.InetSocketAddress;
-
 import com.twitter.finagle.ListeningServer;
+import com.twitter.finagle.Service;
 import com.twitter.finagle.Thrift;
 import com.twitter.util.Await;
-import org.apache.thrift.protocol.TBinaryProtocol;
+import com.twitter.util.Future;
+
+import java.net.InetSocketAddress;
+
+import static javaexample.SimpleThriftHelper.*;
 
 public final class RecipeThriftServerFinished {
     public static void main(String[] args) throws Exception {
-        RecipeThriftServiceImplFinished handler = new RecipeThriftServiceImplFinished();
-        RecipeService.Service service = new RecipeService.Service(handler, new TBinaryProtocol.Factory());
-
+        RecipeService.ServiceIface serviceImpl = getServiceImpl();
         InetSocketAddress listen = new InetSocketAddress(1234);
-        ListeningServer server = Thrift.serve(listen, service);
+
+        Service<byte[],byte[]> handler = toService(serviceImpl);
+        ListeningServer server = Thrift.serve(listen,handler);
+
         Await.result(server);
+    }
+
+    private static RecipeService.ServiceIface getServiceImpl() {
+        return new RecipeService.ServiceIface() {
+            public Future<Recipe> getRecipe(int recipeId) {
+//                return Future.value(simpleCakeRecipe());
+                return MockDatabase.getRecipeById(recipeId);
+            }
+        };
     }
 }
