@@ -1,10 +1,10 @@
-package javaexample;
+package javaexample.chaining;
 
 import com.twitter.util.Await;
 import com.twitter.util.Future;
 import com.twitter.util.FutureTransformer;
 
-public class FutureTransformFinished {
+public class FutureTransformExample {
     public static void main(String[] args) throws Exception {
         Future<String> aFuture = Future.value("a");
         Future<String> abcFuture =

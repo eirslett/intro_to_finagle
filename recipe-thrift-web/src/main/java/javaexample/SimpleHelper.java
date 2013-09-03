@@ -1,5 +1,9 @@
 package javaexample;
 
+import com.twitter.finagle.Service;
+import com.twitter.finagle.Thrift;
+import com.twitter.finagle.thrift.ThriftClientRequest;
+import org.apache.thrift.protocol.TBinaryProtocol;
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.handler.codec.http.DefaultHttpResponse;
 import org.jboss.netty.handler.codec.http.HttpResponse;
@@ -21,5 +25,19 @@ public class SimpleHelper {
             imploded += string+" ";
         }
         return imploded;
+    }
+
+    public static String recipeToString(Recipe recipe){
+        return recipe.getName()+" has ingredients: "+implode(recipe.getIngredients());
+    }
+
+    public static RecipeService.ServiceIface createRecipeThriftClient() {
+        Service<ThriftClientRequest, byte[]> service = Thrift.newClient("inet!localhost:1234").toService();
+        TBinaryProtocol.Factory protocolFactory = new TBinaryProtocol.Factory();
+        RecipeService.ServiceIface client = new RecipeService.ServiceToClient(
+                service,
+                protocolFactory
+        );
+        return client;
     }
 }

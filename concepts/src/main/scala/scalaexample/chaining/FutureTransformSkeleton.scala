@@ -1,4 +1,4 @@
-package scalaexample
+package scalaexample.chaining
 
 import com.twitter.util.{Await, Future}
 

@@ -12,6 +12,7 @@
         <module>recipe-api</module>
         <module>recipe-thrift-server</module>
         <module>recipe-thrift-web</module>
+        <module>concepts</module>
     </modules>
 
     <repositories>

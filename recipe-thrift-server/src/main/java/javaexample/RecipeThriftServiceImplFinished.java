@@ -7,14 +7,16 @@ import com.twitter.util.Future;
 import com.twitter.util.FutureTransformer;
 import scala.Tuple2;
 
-public final class RecipeThriftServerHandler implements RecipeService.ServiceIface {
+public final class RecipeThriftServiceImplFinished implements RecipeService.ServiceIface {
 
     private final MockDatabase database;
 
-    public RecipeThriftServerHandler(){
+    public RecipeThriftServiceImplFinished(){
         database = new MockDatabase();
     }
 
+    // (1) Get name and ingredients in parallell
+    // (2) When both name and ingredients are retrieved, create a Recipe object and return it
     @Override
     public Future<Recipe> getRecipe(int recipeId) {
         Future<String> nameFuture = database.getRecipeNameById(recipeId);

@@ -2,16 +2,16 @@ package javaexample;
 
 import java.net.InetSocketAddress;
 
-import com.twitter.finagle.HttpServer;
+import com.twitter.finagle.Http;
 import com.twitter.finagle.ListeningServer;
-import com.twitter.finagle.builder.ServerBuilder;
 import com.twitter.util.Await;
 
-public final class RecipeWebServer {
+public final class RecipeWebServerFinished {
     public static void main(String[] args) throws Exception {
-        RecipeWebServerHandler handler = new RecipeWebServerHandler();
+        RecipeWebServerImplFinished service = new RecipeWebServerImplFinished();
+
         InetSocketAddress listen = new InetSocketAddress(5678);
-        ListeningServer server = HttpServer.serve(listen, handler);
+        ListeningServer server = Http.serve(listen, service);
         Await.result(server);
     }
 }
