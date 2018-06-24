@@ -15,7 +15,7 @@
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>util-collection_2.10</artifactId>
-            <version>6.3.8</version>
+            <version>6.33.0</version>
         </dependency>
     </dependencies>
 
