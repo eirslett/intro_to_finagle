@@ -16,19 +16,19 @@
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>finagle-core_2.10</artifactId>
-            <version>6.5.2</version>
+            <version>6.34.0</version>
         </dependency>
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>finagle-thrift_2.10</artifactId>
-            <version>6.5.2</version>
+            <version>6.34.0</version>
         </dependency>
 
         <!-- Scrooge, required for generated Thrift sources -->
         <dependency>
             <groupId>com.twitter</groupId>
             <artifactId>scrooge-runtime_2.10</artifactId>
-            <version>3.6.0</version>
+            <version>3.16.3</version>
         </dependency>
 
         <!-- Thrift IDL -->
